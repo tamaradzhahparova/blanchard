@@ -184,11 +184,11 @@ document.querySelectorAll(".catalog-tabs__btn").forEach((tabsBtn) => {
       tabContent.classList.remove("catalog-artist_active");
     });
     // активная кнопка к активному художнику
-     document.querySelector(`[data-target="${path}"] .catalog-artist`).classList.add('catalog-artist_active')
-     const btnPath = document.querySelector(`[data-target="${path}"] .catalog-artist_active`).dataset.target;
+    document.querySelector(`[data-target="${path}"] .catalog-artist`).classList.add('catalog-artist_active')
+    const btnPath = document.querySelector(`[data-target="${path}"] .catalog-artist_active`).dataset.target;
 
-     //удаляем класс активности со всех кнопок
-     document.querySelectorAll(".catalog-accordeon__artist-btn").forEach((buttons) => {
+    //удаляем класс активности со всех кнопок
+    document.querySelectorAll(".catalog-accordeon__artist-btn").forEach((buttons) => {
       buttons.classList.remove("artist-btn_active")
     })
 
@@ -259,13 +259,13 @@ const eventsSwiper = () => {
 
   });
 }
-  // запускаем свайпер, если ширина экрана меньше 430пх
-  if (document.documentElement.clientWidth <= 430) {
-    eventsSwiper()
-  }
+// запускаем свайпер, если ширина экрана меньше 430пх
+if (document.documentElement.clientWidth <= 430) {
+  eventsSwiper()
+}
 
 // отслеживаем изменение ширины экрана
-window.addEventListener('resize',function() {
+window.addEventListener('resize', function () {
   if (document.documentElement.clientWidth <= 430) {
     eventsSwiper();
   }
@@ -307,6 +307,62 @@ var swiper3 = new Swiper('.editions-swiper', {
   }
 });
 
+// PROJECTS SWIPER
+var swiper4 = new Swiper('.projects-swiper-container', {
+
+  slidesPerView: 1,
+  slidesPerGroup: 1,
+
+  // slidesPerColumnFill: 'row',
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  breakpoints: {
+    1650: {
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+      slidesPerColumn: 1,
+      spaceBetween: 50,
+    },
+
+    1025: {
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+      slidesPerColumn: 1,
+      spaceBetween: 15,
+    },
+
+    1024: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      slidesPerColumn: 1,
+      spaceBetween: 50,
+    },
+
+    769: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      slidesPerColumn: 1,
+      spaceBetween: 15,
+    },
+
+    550: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      slidesPerColumn: 1,
+      spaceBetween: 34,
+    },
+
+
+
+
+  }
+});
+
+
 // EDITIONS SPOILER
 const spoiler = () => {
   //показываем на странице только категории в состоянии checked
@@ -342,18 +398,150 @@ const spoiler = () => {
   })
 }
 
-//убираем свайпер на моб устройствах
+//убираем свайпер на моб устройствах и добавляем спойлер
 
 if (document.documentElement.clientWidth <= 430) {
   swiper3.destroy()
   spoiler()
 }
 
+// YMAP
+
+ymaps.ready(init);
+
+function init() {
+  // Создание карты.
+  var myMap = new ymaps.Map("map", {
+    // Координаты центра карты.
+    // Порядок по умолчанию: «широта, долгота».
+    // Чтобы не определять координаты центра карты вручную,
+    // воспользуйтесь инструментом Определение координат.
+    center: [55.758286, 37.601501],
+    // Уровень масштабирования. Допустимые значения:
+    // от 0 (весь мир) до 19.
+    zoom: 14
+  });
+
+  myMap.controls.remove('searchControl'); // удаляем поиск
+  myMap.controls.remove('trafficControl'); // удаляем контроль трафика
+  myMap.controls.remove('typeSelector'); // удаляем тип
+  myMap.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+  myMap.controls.remove('rulerControl'); // удаляем контрол правил
+  myMap.behaviors.disable(['scrollZoom']); // отключаем скролл карты (опционально)
+
+  var placemark = new ymaps.Placemark([55.758286, 37.601501], {}, {
+    iconLayout: 'default#image',
+    iconImageHref: '../img/ymap.svg',
+    iconImageSize: [20, 20],
+  });
+  myMap.geoObjects.add(placemark);
+}
 
 
+// CONTACTS VALIDATION
+
+var selector = document.querySelector('input[type="tel"]');
+
+var im = new Inputmask("+7 (999) - 999 - 99 - 99");
+im.mask(selector);
+
+new JustValidate('.contacts-form', {
+  rules: {
+    name: {
+      required: true,
+      minLength: 2,
+      maxLength: 10
+    },
+    tel: {
+      required: true,
+      function: (name, value) => {
+        const phone = selector.inputmask.unmaskedvalue()
+        return Number(phone) && phone.length === 10
+      }
+    },
+  },
+  messages: {
+    name: 'Как вас зовут?',
+    tel: 'Введите номер телефона',
+  }
+})
 
 
+// MODAL WINDOW
 
+// получаем доступ ко всем нужным элементам
+const slides = document.querySelectorAll('.gallery-slide');
+const modal = document.querySelector('.gallery-modal');
+const modalBtn = document.querySelector('.gallery-slide__btn')
+const modalImg = document.querySelector('.gallery-modal__img-wrapper')
+const modalInform = document.querySelector('.gallery-modal__inform')
+const header = document.querySelector('.header')
+const footer = document.querySelector('.footer')
+const main = document.querySelector('main')
+const gallery = document.querySelector('.gallery')
+const galleryContainer = document.querySelector('.gallery-container')
+let previousActiveElement;
 
+// функция, которая будет блокировать доступ ко всем элементам, пока открыто модальное окно
+const inertAll = (value) => {
+  header.inert = value;
+  header.classList.toggle('inert')
 
+  footer.inert = value;
+  footer.classList.toggle('inert')
 
+  Array.from(main.children).forEach((child) => {
+    if (child !== gallery) {
+      child.inert = value;
+      child.classList.toggle('inert')
+    }
+  })
+
+  Array.from(galleryContainer.children).forEach((child) => {
+    if (child !== modal) {
+      child.inert = value;
+      child.classList.toggle('inert')
+    }
+  })
+  modal.inert = !value;
+}
+
+// по умолчанию доступ к модальному окну закрыт
+modal.inert = true
+
+// создаем обработчик события по клику на каждый слайд
+slides.forEach((slide) => {
+  slide.addEventListener('click', (ev) => {
+
+    // берем содержимое слайда (фото и описание)
+    let description = ev.currentTarget.lastElementChild;
+    let picture = ev.currentTarget.firstElementChild
+
+    // Вставляем информацию о картине в модальное окно
+    modalInform.append(description.cloneNode(true))
+    modalImg.append(picture.cloneNode(true))
+
+    // делаем окно активным
+    modal.classList.add('gallery-modal_active')
+
+    // вызываем функцию, которая скрывает доступ к остальным элементам
+    inertAll(true)
+  })
+})
+
+// создаем обработчик события для закрытия модального окна по клике на кнопку "закрыть"
+modalBtn.addEventListener('click', () => {
+  // удаляем у модального окна класс активности
+  modal.classList.remove('gallery-modal_active')
+  // а также всю информацию о прошлой картине
+  modalInform.lastElementChild.remove()
+  modalImg.firstElementChild.remove()
+
+  // отменяем инерт у всех элементов, кроме модального окна
+  inertAll(false)
+
+})
+
+let keys = {
+  ESC: 27,
+}
