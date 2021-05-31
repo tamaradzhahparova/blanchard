@@ -545,3 +545,22 @@ modalBtn.addEventListener('click', () => {
 let keys = {
   ESC: 27,
 }
+
+
+// Скролл до блока с художниками
+
+const artistBtn = document.querySelectorAll('.catalog-accordeon__artist-btn');
+const artistContent = document.querySelectorAll('.catalog-artist');
+
+const scrollInto = () => {
+  artistContent.forEach((content)  => {
+    content.scrollIntoView({block: "center", behavior: "smooth"})
+  })
+}
+
+
+artistBtn.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    scrollInto()
+  })
+})
