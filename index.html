@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
   <link rel="stylesheet" href="./css/justValidateTooltip.min.css">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" /> -->
   <link rel="stylesheet" href="./css/main.css" />
 
   <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js" defer></script>
@@ -21,6 +22,9 @@
   <script src="./js/inputmask.min.js"></script>
   <script src="./js/just-validate.min.js"></script>
   <script src="./js/inert.js" defer></script>
+  <script src="./js/focus-visible.js" defer></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
   <script src="./js/main.js" defer></script>
 </head>
 
@@ -78,7 +82,7 @@
             Войти
           </button>
         </nav>
-
+        <div class="header-block"></div>
         <form action="https://jsonplaceholder.typicode.com/posts" class="header-form header-form_top">
           <button class="header-form__button_top button-reset">
             <svg width="23" height="22" viewbox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -286,13 +290,16 @@
                 <source srcset="./img/gallery(320)-1.png" media="(max-width: 499px)" />
                 <source srcset="./img/gallery(768)1-1.png" media="(max-width: 768px)" />
                 <source srcset="./img/gallery(1024)1-1.png" media="(max-width: 1024px)" />
-                <img src="./img/gallery(1920)1-1.jpg" alt="Казимир Малевич, Торс" class="gallery-slide__img"/>
+                <img src="./img/gallery(1920)1-1.jpg" alt="Казимир Малевич, Торс" class="gallery-slide__img" />
               </picture>
               <div class="gallery-slide__description">
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -306,7 +313,9 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Женщина с граблями"</p>
                 <span class="gallery-slide__date">1931-1932</span>
-                <p class="gallery-slide__depiction">Картина из второй серии крестьянского цикла работ Казимира Малевича. Художник принялся за ее создание в 1930 - 1931 годах, после того, как первый цикл был утерян после Берлинской и Варшавской выставок в 1927 году</p>
+                <p class="gallery-slide__depiction">Картина из второй серии крестьянского цикла работ Казимира Малевича.
+                  Художник принялся за ее создание в 1930 - 1931 годах, после того, как первый цикл был утерян после
+                  Берлинской и Варшавской выставок в 1927 году</p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -320,7 +329,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Уборка ржи"</p>
                 <span class="gallery-slide__date">1911</span>
-                <p class="gallery-slide__depiction">«Уборка ржи» — это образчик российского кубофутуризма, взявшего начало у французских мастеров. Работа относится к крестьянской серии картин, запечатлевшей рутинный уклад сельской жизни. В этот период у Малевича произошел перелом в направлении художественного стиля.</p>
+                <p class="gallery-slide__depiction">«Уборка ржи» — это образчик российского кубофутуризма, взявшего
+                  начало у французских мастеров. Работа относится к крестьянской серии картин, запечатлевшей рутинный
+                  уклад сельской жизни. В этот период у Малевича произошел перелом в направлении художественного стиля.
+                </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -334,7 +346,9 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Супрематизм"</p>
                 <span class="gallery-slide__date">1911</span>
-                <p class="gallery-slide__depiction">По мнению Казимира Малевича, супрематические картины, к которым относятся и его «Черный квадрат», и полотно «Супрематизм», стали первым шагом к «чистому творчеству», уравняли творческую силу человека с природной. </p>
+                <p class="gallery-slide__depiction">По мнению Казимира Малевича, супрематические картины, к которым
+                  относятся и его «Черный квадрат», и полотно «Супрематизм», стали первым шагом к «чистому творчеству»,
+                  уравняли творческую силу человека с природной. </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -348,7 +362,9 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Женщина с ведрами"</p>
                 <span class="gallery-slide__date">1912</span>
-                <p class="gallery-slide__depiction">"Женщина с вёдрами" Казимира Малевича — яркое произведение авангардного искусства, написанное в 1912 году. Ныне картина хранится в коллекции нью-йоркского Музея современного искусства.</p>
+                <p class="gallery-slide__depiction">"Женщина с вёдрами" Казимира Малевича — яркое произведение
+                  авангардного искусства, написанное в 1912 году. Ныне картина хранится в коллекции нью-йоркского Музея
+                  современного искусства.</p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -362,7 +378,9 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Супрематизм"</p>
                 <span class="gallery-slide__date">1911</span>
-                <p class="gallery-slide__depiction">По мнению Казимира Малевича, супрематические картины, к которым относятся и его «Черный квадрат», и полотно «Супрематизм», стали первым шагом к «чистому творчеству», уравняли творческую силу человека с природной. </p>
+                <p class="gallery-slide__depiction">По мнению Казимира Малевича, супрематические картины, к которым
+                  относятся и его «Черный квадрат», и полотно «Супрематизм», стали первым шагом к «чистому творчеству»,
+                  уравняли творческую силу человека с природной. </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -376,7 +394,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -390,7 +411,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -404,7 +428,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -418,7 +445,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -432,7 +462,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -446,7 +479,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -460,7 +496,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -474,7 +513,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -488,7 +530,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -502,7 +547,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -516,7 +564,10 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
             <li class="swiper-slide gallery-slide">
@@ -530,23 +581,15 @@
                 <p class="gallery-slide__artist">Казимир Малевич</p>
                 <p class="gallery-slide__name">"Торс"</p>
                 <span class="gallery-slide__date">1928-1929</span>
-                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929 году </p>
+                <p class="gallery-slide__depiction">Картина “Торс” (масло на дереве, 41 х 31 см), которая появилась в
+                  Киевском частном собрании, приносит новое освещение одной довольно загадочной серии конца 1920-х
+                  годов, которая была показана в ретроспективной выставке Малевича в Гос. Третьяковской галерее в 1929
+                  году </p>
               </div>
             </li>
           </ul>
         </div>
-        <div class="gallery-modal">
-          <div class="gallery-modal__img-wrapper">
-          </div>
-          <div class="gallery-modal__inform">
-            <button class="gallery-slide__btn button-reset">
-              <svg width="29" height="29" viewbox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2.63623" width="37.2838" height="3.72838" transform="rotate(45 2.63623 0)" fill="white" />
-                <rect y="26.3636" width="37.2838" height="3.72838" transform="rotate(-45 0 26.3636)" fill="white" />
-              </svg>
-            </button>
-          </div>
-        </div>
+
       </div>
     </section>
 
@@ -5568,8 +5611,8 @@
           смешаны с не уникальными данными до степени совершенной
           неузнаваемости, из-за чего возрастает их статус бесполезности.
           Прежде всего, постоянное информационно-пропагандистское
-          <div class="project-tooltip" tabindex="0">
-            <div class="project-tooltip__popup">
+          <div class="project-tooltip" tabindex="0" data-template="one">
+            <div class="project-tooltip__popup" id="one">
               Пример современных тенденций - современная методология разработки
             </div>
           </div>
@@ -5577,14 +5620,14 @@
           нашей деятельности однозначно фиксирует необходимость экономической
           целесообразности принимаемых решений. И нет сомнений, что действия
           представителей оппозиции могут быть рассмотрены
-          <div class="project-tooltip" tabindex="0">
-            <div class="project-tooltip__popup">
+          <div class="project-tooltip" tabindex="0" data-template="two">
+            <div class="project-tooltip__popup" id="two">
               Приятно, граждане, наблюдать, как сделанные на базе аналитики выводы вызывают у вас эмоции
             </div>
           </div> исключительно в
           разрезе маркетинговых и финансовых
-          <div class="project-tooltip" tabindex="0">
-            <div class="project-tooltip__popup">
+          <div class="project-tooltip" tabindex="0" data-template="three">
+            <div class="project-tooltip__popup" id="three">
               В стремлении повысить качество
             </div>
           </div>
@@ -5646,7 +5689,7 @@
             <span class="contacts-inform__name">Шоурум №4</span>
             <span class="contacts-inform__adress">Леонтьевский переулок, дом 5, <span>строение 1</span></span>
           </div>
-          <form action="https://jsonplaceholder.typicode.com/posts" class="contacts-form" method="POST">
+          <form action="https://formspree.io/f/mrgrqykv" class="contacts-form" method="POST">
             <h3 class="contacts__subtitle">Заказать обратный звонок</h3>
             <div class="contacts-form__input-wrapper">
               <input type="text" name="name" class="contacts-form__input" placeholder="Имя*" data-validate-field="name">
@@ -5655,7 +5698,7 @@
               <input type="tel" name="tel" class="contacts-form__input" placeholder="Телефон*"
                 data-validate-field="tel">
             </div>
-            <button class="contacts-form__btn button-reset">Заказать</button>
+            <button class="contacts-form__btn button-reset" type="submit">Заказать</button>
           </form>
           <div class="contacts-connection">
             <h3 class="contacts__subtitle contacts-subtitle__connect">Связаться в один клик</h3>
@@ -5723,6 +5766,19 @@
     </div>
 
   </footer>
+
+  <div class="gallery-modal">
+    <div class="gallery-modal__img-wrapper">
+    </div>
+    <div class="gallery-modal__inform">
+    </div>
+    <button class="gallery-slide__btn button-reset">
+      <svg width="29" height="29" viewbox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2.63623" width="37.2838" height="3.72838" transform="rotate(45 2.63623 0)" fill="white" />
+        <rect y="26.3636" width="37.2838" height="3.72838" transform="rotate(-45 0 26.3636)" fill="white" />
+      </svg>
+    </button>
+  </div>
 </body>
 
 </html>

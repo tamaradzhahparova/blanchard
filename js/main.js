@@ -15,6 +15,8 @@ document
 // DROPDOWNS
 
 document.onclick = function (e) {
+
+  // закрываем дропдаун по клику на страницу
   if (
     e.target.className != "simplebar-content" &&
     e.target.className != "header-menu__text"
@@ -22,6 +24,10 @@ document.onclick = function (e) {
     document.querySelectorAll(".header-menu-dropdown").forEach((tabContent) => {
       tabContent.classList.remove("dropdown_active");
     });
+  }
+  // закрываем модальное окно по клику на затемнение
+  if (e.target == body) {
+    modalClose()
   }
 };
 
@@ -59,6 +65,8 @@ document
     document
       .querySelector(".header-form__button-close")
       .classList.toggle("header-form__button-close_active");
+
+    document.querySelector('.header-block').classList.add('header-block_active')
   });
 
 // search form close
@@ -83,6 +91,8 @@ document
     document
       .querySelector(".header-form__button-close")
       .classList.toggle("header-form__button-close_active");
+
+    document.querySelector('.header-block').classList.remove('header-block_active')
   });
 
 
@@ -92,7 +102,10 @@ document
 const swiper = new Swiper('.hero-swiper', {
   // Optional parameters
   loop: true,
-
+  effect: 'fade',
+  fadeEffect: {
+    crossFade: true
+  },
   autoplay: {
     delay: 4000,
   },
@@ -250,6 +263,7 @@ const eventsSwiper = () => {
 
     pagination: {
       el: '.swiper-pagination',
+      clickable: true,
     },
     spaceBetween: 15,
     slidesPerView: 1,
@@ -328,7 +342,7 @@ var swiper4 = new Swiper('.projects-swiper-container', {
       spaceBetween: 50,
     },
 
-    1025: {
+    1200: {
       slidesPerView: 3,
       slidesPerGroup: 3,
       slidesPerColumn: 1,
@@ -349,7 +363,7 @@ var swiper4 = new Swiper('.projects-swiper-container', {
       spaceBetween: 15,
     },
 
-    550: {
+    600: {
       slidesPerView: 2,
       slidesPerGroup: 2,
       slidesPerColumn: 1,
@@ -431,7 +445,7 @@ function init() {
 
   var placemark = new ymaps.Placemark([55.758286, 37.601501], {}, {
     iconLayout: 'default#image',
-    iconImageHref: '../img/ymap.svg',
+    iconImageHref: './img/ymap.svg',
     iconImageSize: [20, 20],
   });
   myMap.geoObjects.add(placemark);
@@ -475,41 +489,24 @@ const modal = document.querySelector('.gallery-modal');
 const modalBtn = document.querySelector('.gallery-slide__btn')
 const modalImg = document.querySelector('.gallery-modal__img-wrapper')
 const modalInform = document.querySelector('.gallery-modal__inform')
-const header = document.querySelector('.header')
-const footer = document.querySelector('.footer')
 const main = document.querySelector('main')
-const gallery = document.querySelector('.gallery')
-const galleryContainer = document.querySelector('.gallery-container')
+const body = document.body
 let previousActiveElement;
+
 
 // функция, которая будет блокировать доступ ко всем элементам, пока открыто модальное окно
 const inertAll = (value) => {
-  header.inert = value;
-  header.classList.toggle('inert')
 
-  footer.inert = value;
-  footer.classList.toggle('inert')
+  main.inert = value
+  main.classList.toggle('inert')
+  body.classList.toggle('hidden')
 
-  Array.from(main.children).forEach((child) => {
-    if (child !== gallery) {
-      child.inert = value;
-      child.classList.toggle('inert')
-    }
-  })
-
-  Array.from(galleryContainer.children).forEach((child) => {
-    if (child !== modal) {
-      child.inert = value;
-      child.classList.toggle('inert')
-    }
-  })
-  modal.inert = !value;
+  modal.inert = !value
 }
 
-// по умолчанию доступ к модальному окну закрыт
 modal.inert = true
 
-// создаем обработчик события по клику на каждый слайд
+// открытие модального окна
 slides.forEach((slide) => {
   slide.addEventListener('click', (ev) => {
 
@@ -529,18 +526,21 @@ slides.forEach((slide) => {
   })
 })
 
-// создаем обработчик события для закрытия модального окна по клике на кнопку "закрыть"
-modalBtn.addEventListener('click', () => {
-  // удаляем у модального окна класс активности
-  modal.classList.remove('gallery-modal_active')
-  // а также всю информацию о прошлой картине
-  modalInform.lastElementChild.remove()
+const modalClose = () => {
+
+  // удаляем всю информацию о прошлой картине
+  modalInform.firstElementChild.remove()
   modalImg.firstElementChild.remove()
 
+  // удаляем у модального окна класс активности
+  modal.classList.remove('gallery-modal_active')
   // отменяем инерт у всех элементов, кроме модального окна
   inertAll(false)
+}
 
-})
+// создаем обработчик события для закрытия модального окна по клике на кнопку "закрыть"
+modalBtn.addEventListener('click', modalClose)
+
 
 let keys = {
   ESC: 27,
@@ -553,14 +553,35 @@ const artistBtn = document.querySelectorAll('.catalog-accordeon__artist-btn');
 const artistContent = document.querySelectorAll('.catalog-artist');
 
 const scrollInto = () => {
-  artistContent.forEach((content)  => {
-    content.scrollIntoView({block: "center", behavior: "smooth"})
+  artistContent.forEach((content) => {
+    content.scrollIntoView({
+      block: "start",
+      behavior: "smooth"
+    })
   })
 }
 
 
 artistBtn.forEach((btn) => {
   btn.addEventListener('click', () => {
-    scrollInto()
+    if (document.documentElement.clientWidth <= 768) {
+      scrollInto()
+    }
   })
+})
+
+// tippy (tooltip)
+
+let tooltips = document.querySelectorAll('.project-tooltip')
+
+tippy(tooltips, {
+  content(reference) {
+    const id = reference.getAttribute('data-template');
+    const template = document.getElementById(id);
+    return template.innerHTML;
+  },
+  interactive: true,
+  maxWidth: 264,
+
+
 })
