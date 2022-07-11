@@ -1,5 +1,6 @@
-# blanchard
+# Blanchard
 Сайт-визитка для художественной галереи
 
-# Демо 
+
+## Демо 
 [Blanchard](https://tamaradzhahparova.github.io/blanchard/)
