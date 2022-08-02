@@ -4,4 +4,4 @@ Blanchard - сайт-визитка для художественной гале
 ## ДЕМО
 [Blanchard](https://tamaradzhahparova.github.io/blanchard/)
 
-<img align="center" width="100%" src="./myProject/src/img/login.png">
+<img align="center" width="100%" src="./img/screen1">
